@@ -1,9 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration Form</title>
+</head>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<div>
+    <h2>Course Registration Form</h2>
+    <form id="registrationForm" onsubmit="return handleSubmit(event)">
+        
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="courses">Select Course(s):</label>
+        <select id="courses" name="courses" multiple required>
+            <option value="course1">Course 1</option>
+            <option value="course2">Course 2</option>
+            <option value="course3">Course 3</option>
+            <option value="course4">Course 4</option>
+        </select><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" required> Male
+        <input type="radio" id="female" name="gender" value="female"> Female
+        <input type="radio" id="other" name="gender" value="other"> Other<br><br>
+
+        <label for="phone">Phone (e.g. +91):</label>
+        <input type="tel" id="phone" name="phone" pattern="^\+91\d{10}$" required><br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" required></textarea><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="rePassword">Re-enter Password:</label>
+        <input type="password" id="rePassword" name="rePassword" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="successMessage" style="display: none;">
+        Registration Successful!
+    </div>
+</div>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        const password = document.getElementById('password').value;
+        const rePassword = document.getElementById('rePassword').value;
+
+        if (password !== rePassword) {
+            alert('Passwords do not match!');
+            return false;
+        }
+
+        // Show success message
+        document.getElementById("successMessage").style.display = "block"; 
+        
+        return false; // Prevent form from submitting
+    }
+</script>
 
 </body>
 </html>
